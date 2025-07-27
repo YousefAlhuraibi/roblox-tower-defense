@@ -50,7 +50,7 @@ local function getPlayerPlot(player)
 end
 
 --------------------------------------------------------------------------------
--- 2) Target‐selection (tutorial style)
+-- 2) Target‐selection
 local function findTarget(turret, range, mode, player)
 	local plot = getPlayerPlot(player)
 	local map  = plot or Workspace:WaitForChild("Grassland")

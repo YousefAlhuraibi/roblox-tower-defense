@@ -22,12 +22,12 @@ SellTowerFunction.OnServerInvoke = function(player, turretModel)
 	--------------------------------------------------------------------------------
 	-- 1) Basic validity & ownership checks
 	if not (turretModel and turretModel:IsDescendantOf(workspace.Turrets)) then
-		warn("❌ TurretSellHandler — invalid model")
+		warn("TurretSellHandler — invalid model")
 		return false
 	end
 	local creator = turretModel:FindFirstChild("creator")
 	if not (creator and creator.Value == player) then
-		warn("❌ TurretSellHandler — not owner")
+		warn("TurretSellHandler — not owner")
 		return false
 	end
 
@@ -35,7 +35,7 @@ SellTowerFunction.OnServerInvoke = function(player, turretModel)
 	-- 2) Grab its Config folder
 	local config = turretModel:FindFirstChild("Config")
 	if not config then
-		warn("❌ TurretSellHandler — missing Config")
+		warn("TurretSellHandler — missing Config")
 		return false
 	end
 
@@ -52,7 +52,7 @@ SellTowerFunction.OnServerInvoke = function(player, turretModel)
 		if priceVal and priceVal:IsA("NumberValue") then
 			invested = priceVal.Value
 		else
-			warn("❌ TurretSellHandler — no TotalInvested or Config.Price on", turretModel.Name)
+			warn("TurretSellHandler — no TotalInvested or Config.Price on", turretModel.Name)
 			return false
 		end
 	end

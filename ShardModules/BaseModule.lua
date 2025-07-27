@@ -33,15 +33,15 @@ function base.UpdateHealth(damage)
 	end
 	
 	local gui = base.Model.HealthGUI	-- updates the GUI
-	local percent = base.CurrentHealth / base.MaxHealth -- gives us percentage variable
+	local percent = base.CurrentHealth / base.MaxHealth -- gives percentage variable
 	
 	gui.CurrentHealth.Size = UDim2.new(percent, 0,0.5,0) -- sets the size of the health bar to the percent of health left and shows the red underneath
 	if base.CurrentHealth <= 0 then
 		gameOverEvent:Fire()
-		gui.Title.Text = "Base: Destroyed" -- change this line for the title of the base when it is destroyed
+		gui.Title.Text = "Base: Destroyed" -- title of the base when it is destroyed
 		return
 	end
-	gui.Title.Text = "Base: " .. base.CurrentHealth .. "/" .. base.MaxHealth -- Shows health when base teakes damage
+	gui.Title.Text = "Base: " .. base.CurrentHealth .. "/" .. base.MaxHealth -- Shows health when base takes damage
 end
 
 updateBaseHealthEvent.Event:Connect(base.UpdateHealth)

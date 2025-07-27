@@ -14,7 +14,7 @@ local projectileFolder = ReplicatedStorage:WaitForChild("Projectiles")
 -- Tracks currently playing animation tracks
 local currentAnimationTracks = {}
 
--- 🔥 Activate muzzle particle from one of the Muzzle# parts under MuzzleFlashes
+--  Activate muzzle particle from one of the Muzzle# parts under MuzzleFlashes
 local function activateMuzzleParticles(turret)
 	local turretHead = turret:FindFirstChild("TurretHead")
 	if not turretHead then return end
@@ -31,7 +31,7 @@ local function activateMuzzleParticles(turret)
 
 	if #flashes == 0 then return end
 
-	-- 🔁 Pick one muzzle randomly (can change to round-robin if needed)
+	--  Pick one muzzle randomly (can change to round-robin if needed)
 	local muzzle = flashes[math.random(1, #flashes)]
 
 	for _, descendant in ipairs(muzzle:GetDescendants()) do
@@ -43,7 +43,7 @@ end
 
 
 
--- 🔫 Fire projectile with muzzle flash effect
+--  Fire projectile with muzzle flash effect
 local PROJECTILE_SPEED = 100 -- studs per second
 
 local function fireProjectile(turret, target)
@@ -85,10 +85,10 @@ local function fireProjectile(turret, target)
 
 	proj.Parent = workspace
 
-	-- 🔥 Muzzle flash
+	--  Muzzle flash
 	activateMuzzleParticles(turret)
 
-	-- 🌀 Animate projectile
+	--  Animate projectile
 	local tweenInfo = TweenInfo.new(travelTime, Enum.EasingStyle.Linear)
 	local tweenTarget = (proj:IsA("Model") and proj.PrimaryPart or proj)
 	local goal = { Position = predictedPos }
@@ -100,7 +100,7 @@ end
 
 
 
--- 🛑 Stop animation if already playing
+--  Stop animation if already playing
 local function stopAnimation(object)
 	local track = currentAnimationTracks[object]
 	if track then
@@ -109,7 +109,7 @@ local function stopAnimation(object)
 	end
 end
 
--- 🧠 Get or create AnimationController/Humanoid
+--  Get or create AnimationController/Humanoid
 local function getController(object)
 	local h = object:FindFirstChildOfClass("Humanoid")
 	if h then return h end
@@ -123,7 +123,7 @@ local function getController(object)
 	return ctrl
 end
 
--- 🧠 Get or create Animator
+--  Get or create Animator
 local function getAnimator(controller)
 	local anim = controller:FindFirstChildOfClass("Animator")
 	if not anim then
@@ -133,7 +133,7 @@ local function getAnimator(controller)
 	return anim
 end
 
--- 🎬 Play turret/mob animation
+--  Play turret/mob animation
 local function setAnimation(object, animName, looped)
 	local folder = object:FindFirstChild("Animations")
 	if not folder then return end
@@ -167,12 +167,12 @@ local function setAnimation(object, animName, looped)
 	end)
 end
 
--- 🧟 Auto-play walk animation for mobs
+--  Auto-play walk animation for mobs
 workspace.Mobs.ChildAdded:Connect(function(mob)
 	setAnimation(mob, "Walk", true)
 end)
 
--- ⚔️ On turret attack
+--  On turret attack
 animateTowerEvent.OnClientEvent:Connect(function(turret, animName, target)
 	if not (turret and animName) then return end
 
